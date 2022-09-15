@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "314859307446",
+    "project_id": "innofest-30e23",
+    "storage_bucket": "innofest-30e23.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:314859307446:android:a21a901ade0ace947e8117",
+        "android_client_info": {
+          "package_name": "com.partake.partake"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "314859307446-0u9nsusr1gon37t10rjnf7b7okr8l50v.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.partake.partake",
+            "certificate_hash": "cfa3b4ad1cb664657b8aa6dfb5e9a0c01673e7e9"
+          }
+        },
+        {
+          "client_id": "314859307446-7oq01qnmirpcmu66ub2jhkm7a9kckdvh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCsAPvbbequS8OZQqsiJSw66kfJnSRXlmw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "314859307446-7oq01qnmirpcmu66ub2jhkm7a9kckdvh.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "314859307446-8dmkoqlkm21el13vuch6c9pf1skgain7.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.sst.innofest"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
