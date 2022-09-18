@@ -18,6 +18,7 @@ class MainActivity : AppCompatActivity() {
     companion object {
         var email = "test"
         var username = "test"
+        var walletBalance = 0.00
     }
     val AUTH_REQUEST_CODE = 1234
     lateinit var firebaseAuth: FirebaseAuth
@@ -65,6 +66,7 @@ class MainActivity : AppCompatActivity() {
                 username = user.displayName.toString()
 
                 val docRef = db.collection("users").document("${user.email}")
+                val docRef2 = db.collection("history").document("${user.email}")
                 docRef.get()
                     .addOnSuccessListener { document ->
                         if (document != null) {
@@ -72,12 +74,36 @@ class MainActivity : AppCompatActivity() {
                             Log.i(TAG, "${user.email}")
                             if (document.data == null){
                                 val docs = hashMapOf(
-                                    "wallet" to "",
-                                    "purchases" to "",
+                                    "wallet" to walletBalance,
                                 )
                                 db.collection("users").document("${user.email}")
                                     .set(docs)
                                     .addOnSuccessListener { Log.i(TAG, "DocumentSnapshot successfully written!") }
+                                    .addOnFailureListener { e -> Log.w(TAG, "Error writing document", e) }
+                            }
+                            else{
+                                Log.i(TAG, "document alr exists")
+                            }
+                        } else {
+                            Log.i(TAG, "No such document")
+                        }
+                    }
+                    .addOnFailureListener { exception ->
+                        Log.d(TAG, "get failed with ", exception)
+                    }
+
+                docRef2.get()
+                    .addOnSuccessListener { document ->
+                        if (document != null) {
+                            Log.i(TAG, "DocumentSnapshot data: ${document.data}")
+                            Log.i(TAG, "${user.email}")
+                            if (document.data == null){
+                                val docs = hashMapOf(
+                                    "_" to "",
+                                )
+                                db.collection("history").document("${user.email}")
+                                    .set(docs)
+                                    .addOnSuccessListener { Log.i(TAG, "DocumentSnapshot history successfully written!") }
                                     .addOnFailureListener { e -> Log.w(TAG, "Error writing document", e) }
                             }
                             else{

@@ -10,18 +10,27 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Partake">
         <activity
+            android:theme="@style/fancy"
             android:name=".wallet"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".homepage"/>
         <activity
+            android:theme="@style/fancy"
             android:name=".foodtypes"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".homepage"/>
         <activity
+            android:theme="@style/fancy"
             android:name=".profilePage"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".homepage"/>
         <activity
+            android:theme="@style/fancy"
             android:name=".homepage"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".MainActivity"/>
         <activity
+            android:theme="@style/Theme.Partake"
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
