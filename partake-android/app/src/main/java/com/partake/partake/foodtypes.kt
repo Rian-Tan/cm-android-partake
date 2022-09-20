@@ -66,8 +66,9 @@ class foodtypes : AppCompatActivity() {
         listView.adapter = adapter
         adapter.notifyDataSetChanged()
         val db = Firebase.firestore
+        Log.i(TAG, "${input.text}")
         db.collection("foodtypes")
-            .whereEqualTo("name", "${input.text}")
+            .whereEqualTo("name", "${input.text.trim()}")
             .get()
             .addOnSuccessListener { documents ->
                 for (document in documents) {

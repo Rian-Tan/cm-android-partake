@@ -21,7 +21,7 @@ class wallet : AppCompatActivity() {
         setContentView(R.layout.activity_wallet)
         val walletText: TextView = findViewById(R.id.balance)
         val balanceDisplay = "$${walletBalance.toString()}"
-        walletText.setText(balanceDisplay)
+        walletText.setText("S$${"%.2f".format(walletBalance)}")
         val db = Firebase.firestore
         var adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, docslist)
         val listView: ListView = findViewById(R.id.listView)

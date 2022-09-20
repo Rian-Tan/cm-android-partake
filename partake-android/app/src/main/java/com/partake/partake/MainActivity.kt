@@ -56,7 +56,7 @@ class MainActivity : AppCompatActivity() {
         listener = FirebaseAuth.AuthStateListener { p0 ->
             val user = p0.currentUser
             if(user != null){
-                Toast.makeText(this@MainActivity, "signed in", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@MainActivity, "signed in as ${user.displayName}", Toast.LENGTH_SHORT).show()
                 val button2: Button = findViewById(R.id.button2)
                 val storageRef = storage.reference
                 val db = Firebase.firestore
