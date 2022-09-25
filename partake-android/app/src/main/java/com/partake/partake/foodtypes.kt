@@ -4,10 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.ArrayAdapter
-import android.widget.EditText
-import android.widget.ListView
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.ktx.firestore
@@ -24,6 +23,16 @@ class foodtypes : AppCompatActivity() {
         var adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, docslist)
         val listView: ListView = findViewById(R.id.listview2)
         val docRef = db.collection("foodtypes")
+        val foodcard: CardView = findViewById(R.id.foodcardview)
+        val foodnametext: TextView = findViewById(R.id.foodnametext)
+        val foodcounttext: TextView = findViewById(R.id.foodcounttext)
+        val closebutton: Button = findViewById(R.id.button4)
+
+
+        //to disappear
+        val textView7: TextView = findViewById(R.id.textView7)
+        val input: EditText = findViewById(R.id.editTextTextPersonName)
+        val searchbutton: ImageButton = findViewById(R.id.imageButton20)
 
         db.collection("foodtypes").get()
             .addOnCompleteListener(OnCompleteListener<QuerySnapshot?> { task ->
@@ -38,6 +47,39 @@ class foodtypes : AppCompatActivity() {
                     Log.d(TAG, "Error getting documents: ", task.exception)
                 }
             })
+        listView.setOnItemClickListener(){ parent, view, position, id ->
+            listView.visibility = View.INVISIBLE
+            input.visibility = View.INVISIBLE
+            textView7.visibility = View.INVISIBLE
+            searchbutton.visibility = View.INVISIBLE
+            foodcard.visibility = View.VISIBLE
+            closebutton.visibility = View.VISIBLE
+
+            val db = Firebase.firestore
+            val docRef = db.collection("foodtypes").document("${docslist[position]}")
+            docRef.get()
+                .addOnSuccessListener { document ->
+                    if (document != null) {
+                        Log.i(TAG, "DocumentSnapshot data: ${document.data}")
+                        foodnametext.setText("item: ${document.get("name")}")
+                        foodcounttext.setText("count: ${document.get("count")}")
+                    } else {
+                        Log.i(TAG, "No such document")
+                    }
+                }
+                .addOnFailureListener { exception ->
+                    Log.d(TAG, "get failed with ", exception)
+                }
+
+            closebutton.setOnClickListener(){
+                listView.visibility = View.VISIBLE
+                input.visibility = View.VISIBLE
+                textView7.visibility = View.VISIBLE
+                searchbutton.visibility = View.VISIBLE
+                foodcard.visibility = View.INVISIBLE
+                closebutton.visibility = View.INVISIBLE
+            }
+        }
     }
 
     fun navigateToWallet(view: View){

@@ -17,6 +17,7 @@ class homepage : AppCompatActivity() {
         val welcomeText: TextView = findViewById(R.id.textView)
         val welcomeUser = "Welcome $username"
         welcomeText.setText(welcomeUser)
+
     }
 
     fun navigateToWallet(view: View){
@@ -30,6 +31,11 @@ class homepage : AppCompatActivity() {
     }
     fun navigateToSearch(view: View){
         val intent = Intent(this, foodtypes::class.java).apply{}
+        startActivity(intent)
+    }
+
+    fun addstuff(view:View) {
+        val intent = Intent(this, addstuff()::class.java).apply{}
         startActivity(intent)
     }
 }
